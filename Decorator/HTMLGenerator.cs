@@ -1,13 +1,11 @@
 ﻿using Design_Patterns_Assignment.Decorator;
 using Design_Patterns_Assignment.Decorator.Decorators;
+using System;
 
 namespace Design_Patterns_Assignment
 {
     internal class HTMLGenerator
     {
-        public HTMLGenerator()
-        { }
-
         public HTMLGenerator(ITag tag)
         {
             Tag = tag;
@@ -37,8 +35,9 @@ namespace Design_Patterns_Assignment
                 {
                     Tag = new Important(Tag);
                 }
-                textInput = Tag.GetTagStart() + textInput + Tag.GetTagEnd();
             }
+            
+            textInput = Tag.GetTagStart() + textInput + Tag.GetTagEnd();
             return textInput;
         }
     }

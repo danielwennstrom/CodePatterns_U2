@@ -7,7 +7,8 @@ namespace Design_Patterns_Assignment.Decorator
         internal static void Run()
         {
             // Refactor this code so that it uses the Decorator Pattern
-            HTMLGenerator generator = new();
+            Tag tag = new();
+            HTMLGenerator generator = new(tag);
             Console.WriteLine("Decorator");
             Console.WriteLine("Please enter the text.");
             string textInput = Console.ReadLine();

@@ -2,6 +2,6 @@
 {
     public interface ISubscriber
     {
-        string Update();
+        void Update();
     }
 }

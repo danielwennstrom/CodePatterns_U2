@@ -10,12 +10,19 @@ namespace Design_Patterns_Assignment.Observer
             Console.WriteLine("Observer");
             Server server = new();
             Subscriber subscriber = new();
+            Subscriber subscriber1 = new();
             server.RegisterSubscriber(subscriber);
-            var email = "";
+            server.RegisterSubscriber(subscriber1);
+            int evenMinute;
 
-            while (string.IsNullOrEmpty(email))
+            while (true)
             {
-                email = server.NotifySubscriber();
+                evenMinute = DateTime.Now.Minute % 2;
+                if (evenMinute == 0)
+                {
+                    server.NotifySubscriber();
+                    break;
+                }
             }
             Console.WriteLine();
         }

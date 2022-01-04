@@ -8,18 +8,18 @@
         }
 
         public ITag Tag { get; set; }
-        public string TagName { get; set; }
-        public string TagElementStart { get; set; }
-        public string TagElementEnd { get; set; }
+        public string TagName;
+        public string TagElementStart;
+        public string TagElementEnd;
 
         public string GetTagStart()
         {
-            return TagElementStart;
+            return Tag.GetTagStart() + TagElementStart;
         }
 
         public string GetTagEnd()
         {
-            return TagElementEnd;
+            return TagElementEnd + Tag.GetTagEnd();
         }
     }
 }

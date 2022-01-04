@@ -16,7 +16,7 @@ namespace Design_Patterns_Assignment.Observer
         {
             foreach (var subscriber in Subscribers)
             {
-                return subscriber.Update();
+                subscriber.Update();
             }
             return null;
         }
