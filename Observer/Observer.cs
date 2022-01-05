@@ -10,21 +10,31 @@ namespace Design_Patterns_Assignment.Observer
             Console.WriteLine("Observer");
             Server server = new();
             Subscriber subscriber = new();
-            Subscriber subscriber1 = new();
-            server.RegisterSubscriber(subscriber);
-            server.RegisterSubscriber(subscriber1);
-            int evenMinute;
+
+            Console.WriteLine("1: Register/unregister subscriber");
+            Console.WriteLine("2: Update");
 
             while (true)
             {
-                evenMinute = DateTime.Now.Minute % 2;
-                if (evenMinute == 0)
+                switch (Console.ReadKey().KeyChar)
                 {
-                    server.NotifySubscriber();
-                    break;
+                    case '1':
+                        if (!server.Subscribers.Contains(subscriber))
+                        {
+                            Console.WriteLine("registered");
+                            server.RegisterSubscriber(subscriber);
+                        }
+                        else
+                        {
+                            Console.WriteLine("unregistered");
+                            server.UnregisterSubsriber(subscriber);
+                        }
+                        break;
+                    case '2':
+                        server.CheckTime();
+                        break;
                 }
             }
-            Console.WriteLine();
         }
     }
 }

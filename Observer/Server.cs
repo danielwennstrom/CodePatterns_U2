@@ -1,4 +1,5 @@
 ﻿using Design_Patterns_Assignment.Observer.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace Design_Patterns_Assignment.Observer
@@ -12,13 +13,22 @@ namespace Design_Patterns_Assignment.Observer
 
         public List<ISubscriber> Subscribers { get; set; }
 
-        public string NotifySubscriber()
+        public void NotifySubscriber()
         {
             foreach (var subscriber in Subscribers)
             {
                 subscriber.Update();
             }
-            return null;
+        }
+
+        public void CheckTime()
+        {
+            var evenMinute = DateTime.Now.Minute % 2;
+
+            if (evenMinute == 0)
+            {
+                NotifySubscriber();
+            }
         }
 
         public void RegisterSubscriber(ISubscriber subscriber)

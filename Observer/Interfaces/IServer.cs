@@ -10,6 +10,8 @@ namespace Design_Patterns_Assignment.Observer.Interfaces
 
         void UnregisterSubsriber(ISubscriber subscriber);
 
-        string NotifySubscriber();
+        void NotifySubscriber();
+
+        void CheckTime();
     }
 }
