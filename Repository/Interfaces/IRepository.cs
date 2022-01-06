@@ -2,10 +2,10 @@
 
 namespace Design_Patterns_Assignment.Repository.Interfaces
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository
     {
-        void Save(T entity, List<T> list);
+        void SaveToDB(IEntity entity);
 
-        List<T> Load(string connectionstring);
+        List<IEntity> LoadFromDB();
     }
 }

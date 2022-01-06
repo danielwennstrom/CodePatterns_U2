@@ -4,19 +4,21 @@ using System.Collections.Generic;
 
 namespace Design_Patterns_Assignment.Repository
 {
-    internal class DataRepository<T> : IRepository<T> where T : class
+    internal class DataRepository : IRepository
     {
-        public List<T> Load(string connectionstring)
+        SimulatedDatabase simulatedDatabase = new();
+        public void SaveToDB(IEntity entity)
         {
-            var retList = new List<T>();
-            Console.WriteLine("Loading dataset");
-            return retList;
+            simulatedDatabase.Save(entity);
+            Console.WriteLine("Saved");
         }
 
-        public void Save(T entity, List<T> list)
+        public List<IEntity> LoadFromDB()
         {
-            list.Add(entity);
-            Console.WriteLine("Saved");
+            var list = simulatedDatabase.Load("123");
+            Console.WriteLine("Loading dataset");
+
+            return list;
         }
     }
 }

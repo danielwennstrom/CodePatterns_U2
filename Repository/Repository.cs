@@ -1,6 +1,7 @@
 ﻿using Design_Patterns_Assignment.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Design_Patterns_Assignment.Repository
 {
@@ -9,20 +10,22 @@ namespace Design_Patterns_Assignment.Repository
         internal static void Run()
         {
             Console.WriteLine("Repository");
-            Customer customerA = new Customer(1, "Olof");
-            Animal animalA = new Animal(1, "Ture");
+            ICustomer customerA = new Customer(1, "Olof");
+            IAnimal animalA = new Animal(1, "Ture");
 
-            DataRepository<Customer> dataRepository = new();
-            List<Customer> customerList = dataRepository.Load("blablabla");
-            dataRepository.Save(customerA, customerList);
+            DataRepository dataRepository = new();
+            var database = dataRepository.LoadFromDB();
+            dataRepository.SaveToDB(customerA);
+            var customerList = database.OfType<ICustomer>();
+
+            dataRepository.SaveToDB(animalA);
+            var animalList = database.OfType<IAnimal>();
+
             foreach (var customer in customerList)
             {
                 Console.WriteLine($"{customer.Name}");
             }
-
-            DataRepository<Animal> dataRepositoryB = new();
-            List<Animal> animalList = dataRepositoryB.Load("blablabla");
-            dataRepositoryB.Save(animalA, animalList);
+            
             foreach (var animal in animalList)
             {
                 Console.WriteLine($"{animal.Owner}");
